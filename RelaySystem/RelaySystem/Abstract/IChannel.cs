@@ -2,9 +2,8 @@
 
 namespace RelaySystem.Abstract
 {
-    public interface IRelayLink
+    public interface IChannel
     {
         void EnqueueMessage(Message message);
-        void SendMessage();
     }
 }

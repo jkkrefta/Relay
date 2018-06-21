@@ -1,6 +1,7 @@
 ﻿namespace RelaySystem.Models
 {
-    public class Message
+    public struct Message
     {
+        public string Data { get; set; }
     }
 }

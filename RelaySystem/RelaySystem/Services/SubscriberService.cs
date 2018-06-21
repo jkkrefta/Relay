@@ -1,28 +1,39 @@
-﻿using RelaySystem.Abstract;
+﻿using System;
+using RelaySystem.Abstract;
 
 namespace RelaySystem.Services
 {
     public class SubscriberService : ISubscriberService
     {
-        private readonly IRelayLinkFactory _relayLinkFactory;
+        private readonly IChannelFactory _channelFactory;
         private readonly IRelayService _relayService;
 
-        public SubscriberService(IRelayLinkFactory relayLinkFactory, IRelayService relayService)
+        public SubscriberService(IChannelFactory channelFactory, IRelayService relayService)
         {
-            _relayLinkFactory = relayLinkFactory;
+            _channelFactory = channelFactory;
             _relayService = relayService;
         }
 
         public void Subscribe(ISubscriber subscriber)
         {
-            var relayLink = _relayLinkFactory.Create(subscriber);
+            SubscriberIsNotNull(subscriber);
+            var relayLink = _channelFactory.CreateBinaryChannel(subscriber);
             _relayService.AddLink(relayLink);
         }
 
         public void Subscribe(IRemoteService subscriber)
         {
-            var relayLink = _relayLinkFactory.Create(subscriber);
+            SubscriberIsNotNull(subscriber);
+            var relayLink = _channelFactory.CreateHttpChannel(subscriber);
             _relayService.AddLink(relayLink);
+        }
+
+        private void SubscriberIsNotNull<T>(T value)
+        {
+            if (value == null)
+            {
+                throw new ArgumentNullException(nameof(value));
+            }
         }
     }
 }

@@ -6,26 +6,25 @@ using RelaySystem.Services;
 
 namespace RelaySystem.Tests.Services
 {
-    public class BinaryRelayLinkTests
+    public class BinaryChannelTest
     {
         private ISubscriber _subscriber;
-        private BinaryRelayLink _binaryRelayLink;
+        private BinaryChannel _binaryChannel;
         private Message _message;
 
         [SetUp]
         public void Setup()
         {
             _subscriber = A.Fake<ISubscriber>();
-            _binaryRelayLink = new BinaryRelayLink(_subscriber);
+            _binaryChannel = new BinaryChannel(_subscriber);
             _message = new Message();
         }
 
         [Test]
-        public void SendMessage_CallsSubscriberReviceMessage()
+        public void EnqueueMessage_WhenWorkerIsNotBusy_ShouldInvoke()
         {
-            _binaryRelayLink.EnqueueMessage(_message);
-            _binaryRelayLink.SendMessage();
-            A.CallTo(() => _subscriber.ReciveMessage(_message)).MustHaveHappenedOnceExactly();
+            _binaryChannel.EnqueueMessage(_message);
+            A.CallTo(_subscriber.ReciveMessage(A<Message>._)).MustHaveHappenedOnceExactly();
         }
     }
 }

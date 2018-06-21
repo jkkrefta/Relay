@@ -5,7 +5,7 @@ namespace RelaySystem.Abstract
     public interface IRelayService
     {
         int LinkCount { get; }
-        void AddLink(IRelayLink link);
+        void AddLink(IChannel link);
         void RelayMessage(Message message);
     }
 }

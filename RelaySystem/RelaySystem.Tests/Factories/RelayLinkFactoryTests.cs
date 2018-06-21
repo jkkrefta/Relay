@@ -8,26 +8,26 @@ namespace RelaySystem.Tests.Factories
 {
     class RelayLinkFactoryTests
     {
-        private RelayLinkFactory _relayLinkFactory;
+        private ChannelFactory _channelFactory;
 
         [SetUp]
         public void Setup()
         {
-            _relayLinkFactory = new RelayLinkFactory();
+            _channelFactory = new ChannelFactory();
         }
 
         [Test]
         public void Create_GivenISubscriber_ReturnsBinaryRelayLink()
         {
-            var relayLink = _relayLinkFactory.Create(A.Fake<ISubscriber>());
-            Assert.That(relayLink, Is.TypeOf<BinaryRelayLink>());
+            var relayLink = _channelFactory.CreateBinaryChannel(A.Fake<ISubscriber>());
+            Assert.That(relayLink, Is.TypeOf<BinaryChannel>());
         }
 
         [Test]
         public void Create_GivenIRemoteService_ReturnsHttpRelayLink()
         {
-            var relayLink = _relayLinkFactory.Create(A.Fake<IRemoteService>());
-            Assert.That(relayLink, Is.TypeOf<HttpRelayLink>());
+            var relayLink = _channelFactory.CreateHttpChannel(A.Fake<IRemoteService>());
+            Assert.That(relayLink, Is.TypeOf<HttpChannel>());
         }
     }
 }

@@ -19,12 +19,6 @@ namespace RelaySystem.Tests.Services
         }
 
         [Test]
-        public void RelayMessage_GivenNull_Throws()
-        {
-            Assert.Throws<ArgumentNullException>(() => _relayService.RelayMessage(null));
-        }
-
-        [Test]
         public void RelayMessage_WhenThereIsNoRelayLink_Throws()
         {
             Assert.Throws<InvalidOperationException>(() => _relayService.RelayMessage(_emptyMessage));
@@ -33,7 +27,7 @@ namespace RelaySystem.Tests.Services
         [Test]
         public void RelayMessage_CallsEnqueueMessageOnAllLinks()
         {
-            var relayLink = A.Fake<IRelayLink>();
+            var relayLink = A.Fake<IChannel>();
             _relayService.AddLink(relayLink);
             _relayService.RelayMessage(_emptyMessage);
             A.CallTo(() => relayLink.EnqueueMessage(_emptyMessage)).MustHaveHappenedOnceExactly();
@@ -42,7 +36,7 @@ namespace RelaySystem.Tests.Services
         [Test]
         public void AddLink_IRelayLink_AddsItToRelayLinks()
         {
-            _relayService.AddLink(A.Fake<IRelayLink>());
+            _relayService.AddLink(A.Fake<IChannel>());
             Assert.That(_relayService.LinkCount, Is.EqualTo(1));
         }
     }

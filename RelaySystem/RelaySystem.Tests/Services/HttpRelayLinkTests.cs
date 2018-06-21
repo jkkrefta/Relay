@@ -9,23 +9,15 @@ namespace RelaySystem.Tests.Services
     public class HttpRelayLinkTests
     {
         private IRemoteService _remoteService;
-        private HttpRelayLink _httpRelayLink;
+        private HttpChannel _httpChannel;
         private Message _message;
 
         [SetUp]
         public void Setup()
         {
             _remoteService = A.Fake<IRemoteService>();
-            _httpRelayLink = new HttpRelayLink(_remoteService);
+            _httpChannel = new HttpChannel(_remoteService);
             _message = new Message();
-        }
-
-        [Test]
-        public void SendMessage_CallsRemoteServiceReviceMessage()
-        {
-            _httpRelayLink.EnqueueMessage(_message);
-            _httpRelayLink.SendMessage();
-            A.CallTo(() => _remoteService.ReciveMessage(_message)).MustHaveHappenedOnceExactly();
         }
     }
 }
