@@ -27,7 +27,6 @@ namespace RelaySystem.Benchmark.Benchmarks
         public void RunRelayMessage()
         {
             _dispatcherService.DispatchMessage(_message);
-            Thread.Sleep(1); // hack - needed to put time between benchmarks. System does not recycle threads fast enought. Probably can be solved properly, just don`t have time to do it now.
         }
     }
 }
