@@ -2,7 +2,7 @@
 using RelaySystem.Abstract;
 using RelaySystem.Models;
 
-namespace RelaySystem.Benchmark
+namespace RelaySystem.Benchmark.TestDummies
 {
     public class DummyBinarySubscriber : ISubscriber
     {

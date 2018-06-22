@@ -1,11 +1,12 @@
 ﻿using System.Threading;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Attributes.Jobs;
+using RelaySystem.Benchmark.TestDummies;
 using RelaySystem.Factories;
 using RelaySystem.Models;
 using RelaySystem.Services;
 
-namespace RelaySystem.Benchmark
+namespace RelaySystem.Benchmark.Benchmarks
 {
     [CoreJob]
     public class HttpChannelBenchmark

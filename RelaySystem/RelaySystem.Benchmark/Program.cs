@@ -1,4 +1,5 @@
 ﻿using BenchmarkDotNet.Running;
+using RelaySystem.Benchmark.Benchmarks;
 
 namespace RelaySystem.Benchmark
 {
