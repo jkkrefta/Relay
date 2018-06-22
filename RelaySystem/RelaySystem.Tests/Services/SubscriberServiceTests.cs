@@ -9,13 +9,13 @@ namespace RelaySystem.Tests.Services
     class SubscriberServiceTests
     {
         private SubscriberService _subscriberService;
-        private IRelayService _relayService;
+        private IDispatcherService _dispatcherService;
 
         [SetUp]
         public void Setup()
         {
-            _relayService = A.Fake<IRelayService>();
-            _subscriberService = new SubscriberService(A.Fake<IChannelFactory>(), _relayService);
+            _dispatcherService = A.Fake<IDispatcherService>();
+            _subscriberService = new SubscriberService(A.Fake<IChannelFactory>(), _dispatcherService);
         }
 
         [Test]
@@ -28,14 +28,14 @@ namespace RelaySystem.Tests.Services
         public void Subscribe_GivenISubscriber_AddsRelayLinkToRelayService()
         {
             _subscriberService.Subscribe(A.Fake<ISubscriber>());
-            A.CallTo(() => _relayService.AddLink(A<IChannel>._)).MustHaveHappenedOnceExactly();
+            A.CallTo(() => _dispatcherService.AddChannel(A<IChannel>._)).MustHaveHappenedOnceExactly();
         }
 
         [Test]
         public void Subscribe_GivenIRemoteService_AddsRelayLinkToRelayService()
         {
             _subscriberService.Subscribe(A.Fake<IRemoteService>());
-            A.CallTo(() => _relayService.AddLink(A<IChannel>._)).MustHaveHappenedOnceExactly();
+            A.CallTo(() => _dispatcherService.AddChannel(A<IChannel>._)).MustHaveHappenedOnceExactly();
         }
     }
 }

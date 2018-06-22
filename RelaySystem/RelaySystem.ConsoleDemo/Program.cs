@@ -9,7 +9,7 @@ namespace RelaySystem.ConsoleDemo
     {
         static void Main(string[] args)
         {
-            var relayService = new RelayService();
+            var relayService = new DispatcherService();
             var subscriberService = new SubscriberService(new ChannelFactory(), relayService);
             
             subscriberService.Subscribe(new ConsoleSubscriber("1"));
@@ -22,7 +22,7 @@ namespace RelaySystem.ConsoleDemo
             RunTestLoop(relayService);
         }
 
-        private static void RunTestLoop(RelayService relayService)
+        private static void RunTestLoop(DispatcherService dispatcherService)
         {
             var run = true;
             var count = 0;
@@ -30,7 +30,7 @@ namespace RelaySystem.ConsoleDemo
             {
                 run = HandleConsoleInput();
                 count++;
-                relayService.RelayMessage(new Message {Data = count.ToString()});
+                dispatcherService.DispatchMessage(new Message {Data = count.ToString()});
             }
         }
 

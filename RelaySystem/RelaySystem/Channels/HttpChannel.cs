@@ -8,7 +8,7 @@ using Polly.Retry;
 using RelaySystem.Abstract;
 using RelaySystem.Models;
 
-namespace RelaySystem.Services
+namespace RelaySystem.Channels
 {
     public class HttpChannel : IChannel, IDisposable
     {

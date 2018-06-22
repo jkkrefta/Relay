@@ -10,22 +10,22 @@ namespace RelaySystem.Benchmark
     [CoreJob]
     public class HttpChannelBenchmark
     {
-        private RelayService _relayService;
+        private DispatcherService _dispatcherService;
         private SubscriberService _subscriberService;
         private readonly Message _message = new Message();
 
         [GlobalSetup]
         public void Setup()
         {
-            _relayService = new RelayService();
-            _subscriberService = new SubscriberService(new ChannelFactory(), _relayService);
+            _dispatcherService = new DispatcherService();
+            _subscriberService = new SubscriberService(new ChannelFactory(), _dispatcherService);
             _subscriberService.Subscribe(new DummyHttpSubscriber());
         }
 
         [Benchmark]
         public void RunRelayMessage()
         {
-            _relayService.RelayMessage(_message);
+            _dispatcherService.DispatchMessage(_message);
             Thread.Sleep(1); // hack - needed to put time between benchmarks. System does not recycle threads fast enought. Probably can be solved properly, just don`t have time to do it now.
         }
     }

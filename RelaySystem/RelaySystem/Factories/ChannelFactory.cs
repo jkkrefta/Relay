@@ -1,4 +1,5 @@
 ﻿using RelaySystem.Abstract;
+using RelaySystem.Channels;
 using RelaySystem.Services;
 
 namespace RelaySystem.Factories

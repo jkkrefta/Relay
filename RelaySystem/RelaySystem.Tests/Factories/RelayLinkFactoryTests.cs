@@ -1,6 +1,7 @@
 ﻿using FakeItEasy;
 using NUnit.Framework;
 using RelaySystem.Abstract;
+using RelaySystem.Channels;
 using RelaySystem.Factories;
 using RelaySystem.Services;
 

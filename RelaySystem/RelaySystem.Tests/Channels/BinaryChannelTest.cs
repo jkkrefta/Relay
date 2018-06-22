@@ -1,10 +1,10 @@
 ﻿using FakeItEasy;
 using NUnit.Framework;
 using RelaySystem.Abstract;
+using RelaySystem.Channels;
 using RelaySystem.Models;
-using RelaySystem.Services;
 
-namespace RelaySystem.Tests.Services
+namespace RelaySystem.Tests.Channels
 {
     public class BinaryChannelTest
     {
