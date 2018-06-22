@@ -1,6 +1,6 @@
 ﻿namespace RelaySystem.Abstract
 {
-    public interface IChannelFactory
+    internal interface IChannelFactory
     {
         IChannel CreateBinaryChannel(ISubscriber subscriber);
         IChannel CreateHttpChannel(IRemoteService subscriber);

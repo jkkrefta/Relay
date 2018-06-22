@@ -3,7 +3,7 @@ using RelaySystem.Abstract;
 
 namespace RelaySystem.Services
 {
-    public class SubscriberService : ISubscriberService
+    class SubscriberService : ISubscriberService
     {
         private readonly IChannelFactory _channelFactory;
         private readonly IDispatcherService _dispatcherService;

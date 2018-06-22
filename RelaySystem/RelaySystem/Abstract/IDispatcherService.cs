@@ -2,7 +2,7 @@
 
 namespace RelaySystem.Abstract
 {
-    public interface IDispatcherService
+    internal interface IDispatcherService
     {
         int ChannelCount { get; }
         void AddChannel(IChannel channel);

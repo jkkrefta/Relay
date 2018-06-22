@@ -10,7 +10,7 @@ using RelaySystem.Models;
 
 namespace RelaySystem.Channels
 {
-    public class HttpChannel : IChannel, IDisposable
+    class HttpChannel : IChannel, IDisposable
     {
         private readonly IRemoteService _subscriber;
         private readonly Queue<Message> _queue;

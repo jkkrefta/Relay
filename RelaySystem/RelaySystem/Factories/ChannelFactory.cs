@@ -1,10 +1,9 @@
 ﻿using RelaySystem.Abstract;
 using RelaySystem.Channels;
-using RelaySystem.Services;
 
 namespace RelaySystem.Factories
 {
-    public class ChannelFactory : IChannelFactory
+    class ChannelFactory : IChannelFactory
     {
         public IChannel CreateBinaryChannel(ISubscriber subscriber)
         {

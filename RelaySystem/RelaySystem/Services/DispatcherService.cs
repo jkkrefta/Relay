@@ -5,7 +5,7 @@ using RelaySystem.Models;
 
 namespace RelaySystem.Services
 {
-    public class DispatcherService : IDispatcherService
+    class DispatcherService : IDispatcherService
     {
         private readonly List<IChannel> _channels = new List<IChannel>();
         public int ChannelCount => _channels.Count;

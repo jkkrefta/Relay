@@ -1,28 +1,28 @@
 ﻿using System;
-using RelaySystem.Factories;
+using RelaySystem.Abstract;
 using RelaySystem.Models;
-using RelaySystem.Services;
 
 namespace RelaySystem.ConsoleDemo
 {
     class Program
     {
+        private static IRelay _relay;
+
         static void Main(string[] args)
         {
-            var relayService = new DispatcherService();
-            var subscriberService = new SubscriberService(new ChannelFactory(), relayService);
+            _relay = new Relay();
             
-            subscriberService.Subscribe(new ConsoleSubscriber("1"));
-            subscriberService.Subscribe(new ConsoleSubscriber("2"));
-            subscriberService.Subscribe(new ConsoleSubscriber("3"));
+            _relay.Subscribe(new ConsoleSubscriber("1"));
+            _relay.Subscribe(new ConsoleSubscriber("2"));
+            _relay.Subscribe(new ConsoleSubscriber("3"));
 
             Console.WriteLine("Press any key to relay message");
             Console.WriteLine("Press q to quit");
 
-            RunTestLoop(relayService);
+            RunTestLoop();
         }
 
-        private static void RunTestLoop(DispatcherService dispatcherService)
+        private static void RunTestLoop()
         {
             var run = true;
             var count = 0;
@@ -30,7 +30,7 @@ namespace RelaySystem.ConsoleDemo
             {
                 run = HandleConsoleInput();
                 count++;
-                dispatcherService.DispatchMessage(new Message {Data = count.ToString()});
+                _relay.SendMessage(new Message {Data = count.ToString()});
             }
         }
 

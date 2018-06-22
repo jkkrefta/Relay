@@ -8,7 +8,7 @@ using RelaySystem.Models;
 
 namespace RelaySystem.Channels
 {
-    public class BinaryChannel : IChannel, IDisposable
+    class BinaryChannel : IChannel, IDisposable
     {
         private readonly ISubscriber _subscriber;
         private readonly Queue<Message> _queue;

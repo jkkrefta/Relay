@@ -1,5 +1,7 @@
 ﻿using RelaySystem.Abstract;
+using RelaySystem.Factories;
 using RelaySystem.Models;
+using RelaySystem.Services;
 
 namespace RelaySystem
 {
@@ -8,10 +10,10 @@ namespace RelaySystem
         private readonly ISubscriberService _subscriberService;
         private readonly IDispatcherService _dispatcherService;
 
-        public Relay(ISubscriberService subscriberService, IDispatcherService dispatcherService)
+        public Relay()
         {
-            _subscriberService = subscriberService;
-            _dispatcherService = dispatcherService;
+            _dispatcherService = new DispatcherService();
+            _subscriberService = new SubscriberService(new ChannelFactory(), _dispatcherService);
         }
 
         public void Subscribe(ISubscriber subscriber)

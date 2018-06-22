@@ -1,6 +1,6 @@
 ﻿namespace RelaySystem.Abstract
 {
-    public interface ISubscriberService
+    internal interface ISubscriberService
     {
         void Subscribe(ISubscriber subscriber);
         void Subscribe(IRemoteService subscriber);
